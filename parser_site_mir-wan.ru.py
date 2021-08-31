@@ -16,14 +16,14 @@ list_categories = []
 list_category_url = []
 list_items = []
 list_item_url = []
-os.mkdir('C:\\Users\AntonPC\PycharmProjects\Shandrin_Skillbox\lesson_8\Catalogs')
+os.mkdir('..\Catalogs')
 for category in all_categories:
     list_categories.append(category.text)
     list_url = ('https://mir-wan.ru' + category.get('href'))
     list_category_url.append(list_url)
     if len(category.text) < 40:
         try:
-            os.mkdir(f'C:\\Users\AntonPC\PycharmProjects\Shandrin_Skillbox\lesson_8\Catalogs\{category.text}')
+            os.mkdir(f'..\Catalogs{category.text}')
         except FileExistsError:
             pass
         new_list_url = list_url.split('/')
@@ -46,7 +46,7 @@ for category in all_categories:
                 [content.remove(x) for x in content if content.count(x) > 1]
                 name_file = content[0].replace('/', ' ')
                 try:
-                    with open(file=f'C:\\Users\AntonPC\PycharmProjects\Shandrin_Skillbox\lesson_8\Catalogs\{category.text}\{name_file}.txt', mode='w', encoding='utf-8') as file:
+                    with open(file=f'..\Catalogs\{category.text}\{name_file}.txt', mode='w', encoding='utf-8') as file:
                         file.write('\n'.join([y for y in content]))
                 except FileNotFoundError:
                     pass
